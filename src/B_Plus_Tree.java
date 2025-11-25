@@ -1,31 +1,61 @@
+import java.util.ArrayList;
+
 public class B_Plus_Tree {
-  // The maximun # of records that are allowed in a leaf node
+
+    // The maximum number of records that are allowed in a leaf node
     private static final int LEAF_MAX = 16;
 
-    // the diagnostic counter for overflow test (split)
+    // Diagnostic counter for overflow test (split)
     public int leafSplits = 0;
 
+    // Reference to root
+    private LeafNode root = new LeafNode();
 
-    // inserting records for part catalog
-    public boolean insert(PartRecord Record) {
-        LeafNode leaf = findLeaf(Record.id);
+    // Insert a PartRecord into the B+Tree
+    public boolean insert(PartRecord record) {
+        LeafNode leaf = findLeaf(record.id);
 
-       // Checks for any duplicate parts
-        if (leaf.contains(Record.id)) {
+        // Check for any duplicates record
+        if (leaf.contains(record.id)) {
             System.out.println("Error: This Part ID already exists.");
             return false;
         }
 
-        // Goes by sorted order to insert the node
-        leaf.insertSorted(Record);
+        // Insert into leaf in a sorted order
+        leaf.insertSorted(record);
 
-        // If there is a leaf overflow in B+- tree it will split
-        if (leaf.size()> LEAF_MAX) {
+        // Check overflow and split if needed
+        if (leaf.size() > LEAF_MAX) {
             splitLeaf(leaf);
             leafSplits++;
         }
         return true;
+    }
+// makes update to an exsisting recoeds ID
+    public boolean update(String id, String newDescription) {
+        if (id == null || id.isEmpty()) {
+            return false;
+        }
 
+        LeafNode leaf = findLeaf(id);
+        boolean success = leaf.UpdateRecord(id, newDescription);
+
+        if (success) {
+            System.out.println("Updated Successfully.");
+
+        }
+        return success;
     }
 
+
+    // Finds the leaf node where the record should be inserted
+
+    private LeafNode findLeaf(String id) {
+        return root; // For now it will always returns root
+    }
+
+    // Splitting logic if a split is needed
+    private void splitLeaf(LeafNode leaf) {
+        System.out.println("Leaf split occurred.");
+    }
 }

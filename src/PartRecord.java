@@ -7,4 +7,8 @@ public class PartRecord {
             this.description = description;
 
     }
+    // used for updating a exsisting record if needed
+    public void UpdateDescription(String newDescription) {
+            this.description = newDescription;
+    }
 }
