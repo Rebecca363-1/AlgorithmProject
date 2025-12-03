@@ -1,12 +1,3 @@
-// BPlusTree.java
-// B+ tree implementation (in-memory) with:
-// - insert (add new parts)
-// - update (modify description)
-// - search by ID
-// - displayNextTen / range scan
-// - loadFromFile / saveToFile
-// This implementation intentionally omits deletion (Member 2) per your request.
-
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
