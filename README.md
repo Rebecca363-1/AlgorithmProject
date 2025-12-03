@@ -12,3 +12,14 @@ How to Compile and Run in Intellij:
   Choose Import as a Java Project
 
   IntelliJ will automatically index and load the code into IDE 
+
+  
+Requirements:
+Java JDK 17 or higher
+IntelliJ IDEA (recommended) or any Java-compatible IDE
+partfile.txt must be placed in the same directory as your Main.java
+
+If compiling through terminal:
+  javac *.java
+Running the Program
+  java Main
