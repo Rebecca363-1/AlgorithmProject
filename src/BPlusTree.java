@@ -283,6 +283,48 @@ public class BPlusTree {
         return count;
     }
 
+    // -------------------- DELETE (PUBLIC) --------------------
+    public boolean delete(String id) {
+        if (id == null || id.trim().isEmpty()) {
+            System.out.println("Invalid ID.");
+            return false;
+        }
+
+        LeafNode leaf = findLeaf(id);
+        if (leaf == null) {
+            System.out.println("Record not found.");
+            return false;
+        }
+
+        PartRecord toDelete = leaf.getRecord(id);
+        if (toDelete == null) {
+            System.out.println("Record not found.");
+            return false;
+        }
+
+        // Confirm deletion
+        System.out.println("Found: " + toDelete);
+        System.out.print("Are you sure you want to delete this record? (Y/N): ");
+        Scanner sc = new Scanner(System.in);
+        String ans = sc.nextLine().trim().toLowerCase();
+
+        if (!(ans.equals("y") || ans.equals("yes"))) {
+            System.out.println("Deletion cancelled.");
+            return false;
+        }
+
+        // Perform deletion
+        PartRecord removed = leaf.deleteRecord(id);
+        if (removed == null) {
+            System.out.println("Error: deletion failed.");
+            return false;
+        }
+
+        System.out.println("Record '" + id + "' deleted successfully.");
+        return true;
+    }
+
+
     public void printStats() {
         System.out.println("Statistics:");
         System.out.println(" Total splits: " + totalSplits);

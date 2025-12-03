@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -28,7 +26,8 @@ public class Main {
             System.out.println("4) Display next 10 parts (from ID)");
             System.out.println("5) Save to file");
             System.out.println("6) Print stats");
-            System.out.println("7) Exit");
+            System.out.println("7) Delete part");
+            System.out.println("8) Exit");
             System.out.print("Choose option: ");
             String opt = sc.nextLine().trim();
 
@@ -88,6 +87,16 @@ public class Main {
                     break;
 
                 case "7":
+                    System.out.print("Enter Part ID to delete: ");
+                    String dId = sc.nextLine().trim();
+
+                    boolean deleted = tree.delete(dId);
+                    if (!deleted) {
+                        System.out.println("Delete failed.");
+                    }
+                    break;
+
+                case "8":
                     System.out.print("Save changes before exit? (y/N): ");
                     String s = sc.nextLine().trim().toLowerCase();
                     if (s.equals("y") || s.equals("yes")) {
@@ -101,6 +110,8 @@ public class Main {
                     System.out.println("Exiting.");
                     running = false;
                     break;
+
+
 
                 default:
                     System.out.println("Invalid option.");

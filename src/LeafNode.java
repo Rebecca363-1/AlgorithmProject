@@ -67,4 +67,14 @@ public class LeafNode extends Node {
         r.UpdateDescription(newDescription);
         return true;
     }
+    // ---------------- DELETE record from this leaf ----------------
+    public PartRecord deleteRecord(String id) {
+        for (int i = 0; i < records.size(); i++) {
+            if (records.get(i).id.equals(id)) {
+                return records.remove(i);   // remove and return deleted record
+            }
+        }
+        return null; // ID not found
+    }
+
 }
